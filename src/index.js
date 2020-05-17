@@ -3,10 +3,31 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import createSagaMiddleware from 'redux-saga';
+import rootReducer, { rootSaga } from './modules';
+import {HelmetProvider} from 'react-helmet-async';  
+import 'bootstrap/dist/css/bootstrap.css'
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
+);
 
-ReactDOM.render(<App />, document.getElementById('root'));
+sagaMiddleware.run(rootSaga);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter>
+    <HelmetProvider>
+      <App />
+      </HelmetProvider>
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById('root')
+);
+
 serviceWorker.unregister();

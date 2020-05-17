@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React, { useEffect,useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import logo from "./logo.svg";
+import "./App.css";
+import Home from "./common/Home";
+import { Route } from "react-router-dom";
+import Sidebar from "./common/Sidebar";
+import RegisterPage from "./pages/RegisterPage";
+import ManufacturerPage from "./pages/ManufacturerPage";
+import LoginPage from "./pages/LoginPage";
+import PostListPage from "./pages/PostListPage";
+import WritePage from "./pages/WritePage";
+import PostPage from "./pages/PostPage";
+import AuthRoute from "./AuthRoute";
+import StoreListsDetailPage from "./pages/StoreListsDetailPage";
+const App = () => {
+  const user = useSelector(({ user }) => ({
+    user: user.user,
+  }));
+  const [authenticated,setAuthenticated] = useState("");
+  useEffect(() => {
+    if (user) {
+      setAuthenticated(true);
+    } else {
+      setAuthenticated(true);
+    }
+  }, [user]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Route path="/" component={LoginPage} exact={true} />
+      <Route path="/register" component={RegisterPage} />
+      <Route path="/manufacturerstory" component={ManufacturerPage} />
+      {/* <Route path="/postlistpage" component={PostListPage} /> */}
+      <AuthRoute
+        authenticated={authenticated}
+        path="/postlistpage"
+        render={props => <PostListPage user={user} {...props}/>}
+      />
+      <Route path="/write" component={WritePage} />
+      <Route path="/seller/inquire/:postId" component={PostPage} />
+      <Route path="/stores/inquire/:postId" component={StoreListsDetailPage} />
+    </>
   );
-}
-
+};
 export default App;
