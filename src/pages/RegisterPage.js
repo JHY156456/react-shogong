@@ -1,12 +1,12 @@
 import React from "react";
 import AuthTemplate from "../components/auth/AuthTemplate";
 import RegisterForm from "../containers/auth/RegisterForm";
-import Sidebar from "../common/Sidebar";
+import HeaderContainer from "../containers/common/HeaderContainer";
 
 const RegisterPage = () => {
   return (
     <>
-      <Sidebar />
+      <HeaderContainer />
       <div id="wrapper">
         <section id="intro" className="wrapper style1 fullscreen fade-up">
           <div className="inner">

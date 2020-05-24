@@ -1,12 +1,12 @@
 import React from "react";
 import AuthTemplate from "../components/auth/AuthTemplate";
 import ManufacturerForm from "../containers/auth/ManufacturerForm";
-import Sidebar from "../common/Sidebar";
+import HeaderContainer from "../containers/common/HeaderContainer";
 
 const ManufacturerPage = () => {
   return (
     <>
-      <Sidebar />
+      <HeaderContainer />
       <div id="wrapper">
         <section id="intro" className="wrapper style1 fullscreen fade-up">
           <div className="inner">

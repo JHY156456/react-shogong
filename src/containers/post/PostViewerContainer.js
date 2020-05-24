@@ -47,6 +47,7 @@ const PostViewerContainer = ({ match, history }) => {
   const ownPost = true;
 
   return (
+    
     <PostViewer
       post={post}
       loading={loading}

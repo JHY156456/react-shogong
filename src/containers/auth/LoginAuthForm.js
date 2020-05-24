@@ -50,6 +50,7 @@ const LoginAuthForm = ({ history }) => {
     }
     if (loginAuth) {
       console.log('로그인 성공');
+      console.log("여기?");
       //dispatch(check());
       history.push('/register')
     }

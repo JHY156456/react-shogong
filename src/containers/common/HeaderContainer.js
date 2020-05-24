@@ -1,7 +1,7 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import Header from '../../components/common/Header';
-import { logout } from '../../modules/user';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Sidebar from "../../common/Sidebar";
+import { logout } from "../../modules/user";
 
 const HeaderContainer = () => {
   const { user } = useSelector(({ user }) => ({ user: user.user }));
@@ -9,7 +9,7 @@ const HeaderContainer = () => {
   const onLogout = () => {
     dispatch(logout());
   };
-  return <Header user={user} onLogout={onLogout} />;
+  return <Sidebar user={user} onLogout={onLogout} />;
 };
 
 export default HeaderContainer;

@@ -14,30 +14,19 @@ import PostPage from "./pages/PostPage";
 import AuthRoute from "./AuthRoute";
 import StoreListsDetailPage from "./pages/StoreListsDetailPage";
 const App = () => {
-  const user = useSelector(({ user }) => ({
-    user: user.user,
-  }));
-  const [authenticated,setAuthenticated] = useState("");
-  useEffect(() => {
-    if (user) {
-      setAuthenticated(true);
-    } else {
-      setAuthenticated(true);
-    }
-  }, [user]);
   return (
     <>
       <Route path="/" component={LoginPage} exact={true} />
       <Route path="/register" component={RegisterPage} />
       <Route path="/manufacturerstory" component={ManufacturerPage} />
-      {/* <Route path="/postlistpage" component={PostListPage} /> */}
-      <AuthRoute
-        authenticated={authenticated}
+      <Route path="/postlistpage/:boardType" component={PostListPage} />
+      {/* <AuthRoute
+        authenticated={user.status}
         path="/postlistpage"
-        render={props => <PostListPage user={user} {...props}/>}
-      />
+        render={props => <PostListPage {...props}/>}
+      /> */}
       <Route path="/write" component={WritePage} />
-      <Route path="/seller/inquire/:postId" component={PostPage} />
+      <Route path="/product/inquire/:postId" component={PostPage} />
       <Route path="/stores/inquire/:postId" component={StoreListsDetailPage} />
     </>
   );

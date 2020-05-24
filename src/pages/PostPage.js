@@ -1,12 +1,11 @@
 import React from "react";
-import HeaderContainer from "../containers/common/HeaderContainer";
 import PostViewerContainer from "../containers/post/PostViewerContainer";
-import Sidebar from "../common/Sidebar";
+import HeaderContainer from "../containers/common/HeaderContainer";
 
 const PostPage = () => {
   return (
     <>
-    <Sidebar />
+    <HeaderContainer />
     <div id="wrapper">
     <section id="intro" className="wrapper style1 fullscreen fade-up">
       <div className="inner">

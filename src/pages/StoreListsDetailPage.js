@@ -1,12 +1,11 @@
 import React from "react";
-import HeaderContainer from "../containers/common/HeaderContainer";
 import StoreViewerContainer from "../containers/post/StoreViewerContainer";
-import Sidebar from "../common/Sidebar";
+import HeaderContainer from "../containers/common/HeaderContainer";
 
 const StoreListsDetailPage = () => {
   return (
     <>
-    <Sidebar />
+    <HeaderContainer />
     <div id="wrapper">
     <section id="intro" className="wrapper style1 fullscreen fade-up">
       <div className="inner">

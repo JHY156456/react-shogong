@@ -10,7 +10,7 @@ import "../../../node_modules/react-bootstrap-table/css/react-bootstrap-table.cs
 import CompanySummary from "../../common/CompanySummary";
 const PostViewerBlock = styled(Responsive)`
   margin-top: 4rem;
-  padding:1rem;
+  padding: 1rem;
 `;
 const PostHead = styled.div`
   border-bottom: 1px solid ${palette.gray[2]};
@@ -44,7 +44,7 @@ const StoreViewer = ({ post, error, loading, actionButtons, ownPost }) => {
   const { title, body, user, publishedDate, tags } = post;
 
   const data = [
-    {  name: "사업자명", value: "2" },
+    { name: "사업자명", value: "2" },
     { name: "판매상품 카테고리", value: "5" },
     { name: "사업자등록증 첨부", value: "4" },
     { name: "통장사본 첨부", value: "4" },
@@ -60,17 +60,19 @@ const StoreViewer = ({ post, error, loading, actionButtons, ownPost }) => {
     { name: "담당자", value: "4" },
     { name: "대표번호", value: "4" },
     { name: "대표 이메일", value: "4" },
-    
   ];
   return (
     <div>
-        <PostViewerBlock>
-      <CompanySummary></CompanySummary>
+      <PostViewerBlock>
+        <CompanySummary></CompanySummary>
       </PostViewerBlock>
       <PostViewerBlock>
         <BootstrapTable data={data}>
-          
-          <TableHeaderColumn  isKey dataField="name" width="200"></TableHeaderColumn>
+          <TableHeaderColumn
+            isKey
+            dataField="name"
+            width="200"
+          ></TableHeaderColumn>
           <TableHeaderColumn dataField="value"></TableHeaderColumn>
         </BootstrapTable>
       </PostViewerBlock>

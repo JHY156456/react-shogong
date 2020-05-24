@@ -6,10 +6,11 @@ import palette from "../../lib/styles/palette";
 import SubInfo from "../common/SubInfo";
 import Tags from "../common/Tags";
 import { Link } from "react-router-dom";
+import { Search } from "semantic-ui-react";
 
 const PostListBlock = styled(Responsive)`
   background: white;
-  font-size: medium
+  font-size: medium;
 `;
 
 const WritePostButtonWrapper = styled.div`
@@ -41,48 +42,92 @@ const PostItemBlock = styled.div`
     margin-top: 2rem;
   }
 `;
-const PostItem = () => {
+const PostItem = ({ post, boardType }) => {
+  const { publishedDate, user, tags, title, body, _id } = post;
   return (
     <tbody>
       <tr>
-        <td>제목</td>
-        <td><Link to='/seller/inquire/0'>박윤범ㄴㅇㄹㅁㄴㅇㄹㄴㅁㅇㄹㄴㅁㅇㄹㄴㅁㅇㄹㄴㅁㅇㄹ</Link></td>
-        <td>{new Date().toLocaleDateString()}</td>
-        <td>내용일부분...</td>
+        <td>{post._id}</td>
+        <td>
+          <Link to={`/${boardType}/${_id}`}>
+            {post.title < 10 ? post.title : `${post.title.slice(0, 10)}`}
+          </Link>
+        </td>
+        <td>{post.sellPrice}</td>
+        <td>{post.fee}</td>
         <td>
           {" "}
-          <Tags tags={["수정"]} />
+          <Button>수정</Button>
         </td>
       </tr>
     </tbody>
   );
 };
 
-const PostList = () => {
+const PostList = ({ posts, loading, error, showWriteButton, boardType }) => {
   return (
     <PostListBlock>
+      <WritePostButtonWrapper>
+        <Search
+        loading={false}
+        style={{marginTop:"1rem"}}
+        // loading={isLoading}
+        // onResultSelect={this.handleResultSelect}
+        // onSearchChange={_.debounce(this.handleSearchChange, 500, {
+        //   leading: true,
+        // })}
+        // results={results}
+        // value={value}
+        // {...this.props}
+        />
+      </WritePostButtonWrapper>
+
+      <table className="table table-hover">
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>
+              {(() => {
+                if (boardType == ":stores") {
+                  return "제조사명";
+                } else if (boardType == "products") {
+                  return "상품명";
+                }
+              })()}
+            </th>
+            <th>
+              {(() => {
+                if (boardType == ":stores") {
+                  return "카테고리";
+                } else if (boardType == "products") {
+                  return "판매가격";
+                }
+              })()}
+            </th>
+            <th>수수료</th>
+            <th> </th>
+          </tr>
+        </thead>
+        {!loading && posts && (
+          <>
+            {posts.map((post) => (
+              <PostItem boardType={boardType} post={post} key={post._id} />
+            ))}
+          </>
+        )}
+        {/* <PostItem />
+        <PostItem />
+        <PostItem /> */}
+      </table>
       <WritePostButtonWrapper>
         <Button cyan to="/write">
           새글작성하기
         </Button>
       </WritePostButtonWrapper>
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <th>번호</th>
-            <th>상품명</th>
-            <th>판매가격</th>
-            <th>수수료</th>
-            <th> </th>
-          </tr>
-        </thead>
-        <PostItem />
-        <PostItem />
-        <PostItem />
-      </table>
     </PostListBlock>
   );
 };
+
 // const PostItem = ({ post }) => {
 //   const { publishedDate, user, tags, title, body, _id } = post;
 //   return (

@@ -4,12 +4,12 @@ import EditorContainer from "../containers/write/EditorContainer";
 import TagBoxContainer from "../containers/write/TagBoxContainer";
 import WriteActionButtonsContainer from "../containers/write/WriteActionButtonsContainer";
 import { Helmet } from "react-helmet-async";
-import Sidebar from "../common/Sidebar";
+import HeaderContainer from "../containers/common/HeaderContainer";
 
 const WritePage = () => {
   return (
     <>
-      <Sidebar />
+      <HeaderContainer />
       <div id="wrapper">
         <section id="intro" className="wrapper style1 fullscreen fade-up">
           <div className="inner">

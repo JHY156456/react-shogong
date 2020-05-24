@@ -11,13 +11,33 @@ import createSagaMiddleware from 'redux-saga';
 import rootReducer, { rootSaga } from './modules';
 import {HelmetProvider} from 'react-helmet-async';  
 import 'bootstrap/dist/css/bootstrap.css'
+import {tempSetUser,check} from './modules/user';
+
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
 
+function loadUser(){
+  try{
+    // const user = localStorage.getItem('user');
+    // if(!user.status) return;
+
+    // store.dispatch(tempSetUser(user));
+    // store.dispatch(check());
+    const user = new Object();
+    user.status = true;
+    user.type = "administrator";
+    store.dispatch(tempSetUser(user));
+    console.log("tempSetUser");
+  }catch(e){
+    console.log('localStorage is not working');
+  }
+}
+
 sagaMiddleware.run(rootSaga);
+loadUser();
 
 ReactDOM.render(
   <Provider store={store}>
