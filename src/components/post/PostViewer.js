@@ -5,9 +5,17 @@ import Responsive from "../common/Responsive";
 import SubInfo from "../common/SubInfo";
 import Tags from "../common/Tags";
 import { Helmet } from "react-helmet-async";
+import { Grid, Image, Header } from "semantic-ui-react";
 
 const PostViewerBlock = styled(Responsive)`
-  margin-top: 4rem;
+  margin-bottom: 4rem;
+  border: #e8e8e8;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); /* 그림자 */ 
+  word-break:break-all;
+`;
+const PostViewerBlockNoBackground = styled.div`
+  margin-bottom: 4rem;
+
 `;
 const PostHead = styled.div`
   border-bottom: 1px solid ${palette.gray[2]};
@@ -50,33 +58,34 @@ const PostViewer = ({ post, error, loading, actionButtons, ownPost }) => {
     setbodyCharacters(i);
     setIsFold(true);
   }
-  const { title, body, user, publishedDate, tags } = post;
+
   return (
-    <div>
+    <>
       <PostViewerBlock>
-        <Helmet>
-          <title> - REACTERS</title>
-        </Helmet>
-
-        <PostHead>
-          <h1>{title}</h1>
-          <SubInfo
-            username="{user.username}"
-            publishedDate={publishedDate}
-            hasMarginTop
-          />
-          {/* <Tags tags={tags} /> */}
-        </PostHead>
-        {actionButtons}
-
-        {/* <PostContent dangerouslySetInnerHTML={{ __html: body }} /> */}
+        <Grid>
+          <Grid.Column width={6} floated="left" style={{ marginLeft: "1rem" }}>
+            <Grid.Row>
+              <Header as="h2">{post.title}</Header>
+            </Grid.Row>
+            <Grid.Row>{post.representativeName}</Grid.Row>
+          </Grid.Column>
+          <Grid.Column floated="right" width={4}>
+            <Grid.Row floated="right">
+              <Header as="h2">{post.sellPrice}</Header>
+            </Grid.Row>
+            <Grid.Row>
+                수수료 {post.fee}
+            </Grid.Row>
+          </Grid.Column>
+        </Grid>
       </PostViewerBlock>
 
+      <strong>제품설명</strong>
       <PostViewerBlock>
         <PostContent>
-          {body.length < bodyCharacters
-            ? body
-            : `${body.slice(0, bodyCharacters)}...`}
+          {post.body.length < bodyCharacters
+            ? post.body
+            : `${post.body.slice(0, bodyCharacters)}...`}
         </PostContent>
         {isFold && (
           <a
@@ -99,7 +108,19 @@ const PostViewer = ({ post, error, loading, actionButtons, ownPost }) => {
           </a>
         )}
       </PostViewerBlock>
-    </div>
+
+      <PostViewerBlockNoBackground>
+        <Grid>
+          <Grid.Column width={3} style={{ marginLeft: "1rem" }}>
+            <Grid.Row className="header">옵션별 재고수량</Grid.Row>
+          </Grid.Column>
+          <Grid.Column>
+            <Grid.Row>sdf</Grid.Row>
+            <Grid.Row>asdf</Grid.Row>
+          </Grid.Column>
+        </Grid>
+      </PostViewerBlockNoBackground>
+    </>
   );
 };
 

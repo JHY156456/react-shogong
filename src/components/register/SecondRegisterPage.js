@@ -124,12 +124,14 @@ const SecondRegisterPage = ({ type, onSubmit, error,onChange,form,changeAddress 
         </ButtonWithMarginTop>
       </div>
       <form onSubmit={(e) => onSubmit(e, "secondNext")} id="myform">
+      <strong>사업자등록증 첨부</strong>
         <StyledInput
           name="businessLicense"
           placeholder="사업자등록증 첨부"
           type="file"
           
         />
+        <strong>통장사본 첨부</strong>
         <StyledInput
           name="copyAccount"
           placeholder="통장사본 첨부"

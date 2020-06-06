@@ -42,12 +42,8 @@ const PostViewerContainer = ({ match, history }) => {
       console.log(e);
     }
   };
-
-  //const ownPost = (user && user._id) === (post && post.user._id);
   const ownPost = true;
-
   return (
-    
     <PostViewer
       post={post}
       loading={loading}

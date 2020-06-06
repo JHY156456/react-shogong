@@ -31,10 +31,14 @@ const post = handleActions(
       ...state,
       post,
     }),
-    [READ_POST_FAILURE]: (state, { payload: error }) => ({
+    [READ_POST_FAILURE]: (state, { payload: post }) => ({
       ...state,
-      error,
+      post,
     }),
+    // [READ_POST_FAILURE]: (state, { payload: error }) => ({
+    //   ...state,
+    //   error,
+    // }),
     [UNLOAD_POST]: () => initialState,
   },
   initialState,

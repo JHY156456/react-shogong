@@ -28,7 +28,8 @@ function loadUser(){
     // store.dispatch(check());
     const user = new Object();
     user.status = true;
-    user.type = "administrator";
+    // user.type = "administrator";
+    user.type = "customer";
     store.dispatch(tempSetUser(user));
     console.log("tempSetUser");
   }catch(e){

@@ -1,99 +1,96 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeField, initializeForm, register } from "../../modules/auth";
-import RegisterAuthForm from "../../components/auth/RegisterAuthForm";
+import {
+  changeField,
+  initializeForm,
+  register,
+  checkRegisteredManufacturer
+} from "../../modules/manufacturer";
+import ManufacturerStory from "../../components/register/ManufacturerStory";
 import { check } from "../../modules/user";
 import { withRouter } from "react-router-dom";
+import qs from 'qs';
 
 const ManufacturerForm = ({ history }) => {
-    console.log("뭔데");
-    
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
-  const { form, auth, authError, user } = useSelector(({ auth, user }) => ({
-    form: auth.register,
-    auth: auth.auth,
-    authError: auth.authError,
-    user: user.user
-  }));
-  const [type, setType] = useState("manufacturer");
+  const { form, check, authError, user } = useSelector(
+    ({ manufacturer, user }) => ({
+      form: manufacturer.manufacturer,
+      check: manufacturer.check,
+      authError: manufacturer.authError,
+      user: user.user,
+    })
+  );
+  const [isRegistered, setisRegistered] = useState("true");
   // 인풋 변경 이벤트 핸들러
-  const onChange = e => {
+  const onChange = (e) => {
+    e.preventDefault();
     const { value, name } = e.target;
     dispatch(
       changeField({
-        form: "register",
+        form: "manufacturer",
         key: name,
-        value
+        value,
       })
     );
   };
-
+  const temporarySave = {};
   // 폼 등록 이벤트 핸들러
-  const onSubmit = (e, buttonId) => {
+  const onSubmit = (e) => {
+    console.log(e.keyCode);
     e.preventDefault();
-    console.log(buttonId);
-    const { username, password, passwordConfirm } = form;
+    console.log("제조사이야기 onSubmit");
+    const {
+      motive,
+      toBusinessAbilityPublic,
+      toBusinessAbilityPrivate,
+      importantIdea,
+      valueOrBelief,
+      reward,
+      orientation,
+      otherQuestion,
+    } = form;
     // 하나라도 비어있다면
-    if ([username, password, passwordConfirm].includes("")) {
+    if (
+      [
+        motive,
+        toBusinessAbilityPublic,
+        toBusinessAbilityPrivate,
+        importantIdea,
+        valueOrBelief,
+        reward,
+        orientation,
+        otherQuestion,
+      ].includes("")
+    ) {
       setError("빈 칸을 모두 입력하세요.");
       return;
     }
-    // 비밀번호가 일치하지 않는다면
-    if (password !== passwordConfirm) {
-      setError("비밀번호가 일치하지 않습니다.");
-      dispatch(changeField({ form: "register", key: "password", value: "" }));
-      dispatch(
-        changeField({ form: "register", key: "passwordConfirm", value: "" })
-      );
-      return;
-    }
-    dispatch(register({ username, password }));
+    dispatch(register({ form }));
   };
 
   // 컴포넌트가 처음 렌더링 될 때 form 을 초기화함
   useEffect(() => {
-    dispatch(initializeForm("register"));
+    dispatch(initializeForm("manufacturer"));
+    dispatch(checkRegisteredManufacturer());
   }, [dispatch]);
-  useEffect(() => {
-    console.log("뭔데");
-    window.scrollTo(0, 0);
-  }, [type]);
   // 회원가입 성공 / 실패 처리
   useEffect(() => {
-    if (authError) {
-      // 계정명이 이미 존재할 때
-      if (authError.response.status === 409) {
-        setError("이미 존재하는 계정명입니다.");
-        return;
-      }
-      // 기타 이유
-      setError("회원가입 실패");
-      return;
-    }
-
-    if (auth) {
-      console.log("회원가입 성공");
-      console.log(auth);
-      dispatch(check());
-    }
-  }, [auth, authError, dispatch]);
-
-  // user 값이 잘 설정되었는지 확인
-  useEffect(() => {
-    if (user) {
-      console.log("check API 성공");
-      console.log(user);
-    }
-  }, [history, user]);
+    console.log("manufacturer check : "+check)
+    if (check) {
+      history.push(`/stores/inquire/${hi}`);
+    } 
+  }, [check, authError, dispatch]);
 
   return (
-    <RegisterAuthForm
-      type={type}
+    <ManufacturerStory
+      isRegistered={isRegistered}
       form={form}
       onChange={onChange}
       onSubmit={onSubmit}
       error={error}
+      temporarySave={temporarySave}
     />
   );
 };

@@ -65,7 +65,7 @@ const SignIn = ({ type, form, onChange, onSubmit, error }) => {
             fullWidth
             id="email"
             label="아이디"
-            name="username"
+            name="id"
             autoComplete="email"
             autoFocus
           />

@@ -5,7 +5,7 @@ import palette from "../../lib/styles/palette";
 import FirstRegisterPage from "../register/FirstRegisterPage";
 import SecondRegisterPage from "../register/SecondRegisterPage";
 import ThirdRegisterPage from "../register/ThridRegisterPage";
-import ManufacturerStory from "../ManufacturerStory";
+import ManufacturerStory from "../register/ManufacturerStory";
 import RegisteredBasicInformation from "../register/RegisteredBasicInformation";
 /**
  * 회원가입 또는 로그인 폼을 보여줍니다.

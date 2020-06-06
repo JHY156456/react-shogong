@@ -1,5 +1,5 @@
 import React from "react";
-import StoreViewerContainer from "../containers/post/StoreViewerContainer";
+import PostViewerContainer from "../containers/post/PostViewerContainer";
 import HeaderContainer from "../containers/common/HeaderContainer";
 
 const StoreListsDetailPage = () => {
@@ -9,7 +9,7 @@ const StoreListsDetailPage = () => {
     <div id="wrapper">
     <section id="intro" className="wrapper style1 fullscreen fade-up">
       <div className="inner">
-        <StoreViewerContainer />
+        <PostViewerContainer />
       </div>
     </section>
     </div>

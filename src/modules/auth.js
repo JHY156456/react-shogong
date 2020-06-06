@@ -43,12 +43,12 @@ export const initializeForm = createAction(INITIALIZE_FORM, (form) => form); // 
 
 export const test = createAction(TEST, (form) => form);
 
-export const register = createAction(REGISTER, (form) => ({
-  form
-}));
+export const register = createAction(REGISTER, form=>form); 
+// (form)=>{form} 으로하면 saga에서 action.payload.form으로 전송해야한다..
+// 왜인지 이유를 나중에 확인해보자
 
-export const login = createAction(LOGIN, ({ username, password }) => ({
-  username,
+export const login = createAction(LOGIN, ({ id, password }) => ({
+  id,
   password,
 }));
 

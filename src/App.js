@@ -10,7 +10,7 @@ import ManufacturerPage from "./pages/ManufacturerPage";
 import LoginPage from "./pages/LoginPage";
 import PostListPage from "./pages/PostListPage";
 import WritePage from "./pages/WritePage";
-import PostPage from "./pages/PostPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
 import AuthRoute from "./AuthRoute";
 import StoreListsDetailPage from "./pages/StoreListsDetailPage";
 const App = () => {
@@ -19,14 +19,14 @@ const App = () => {
       <Route path="/" component={LoginPage} exact={true} />
       <Route path="/register" component={RegisterPage} />
       <Route path="/manufacturerstory" component={ManufacturerPage} />
-      <Route path="/postlistpage/:boardType" component={PostListPage} />
+      <Route path="/postlistpage/:boardType/" component={PostListPage} />
       {/* <AuthRoute
         authenticated={user.status}
         path="/postlistpage"
         render={props => <PostListPage {...props}/>}
       /> */}
       <Route path="/write" component={WritePage} />
-      <Route path="/product/inquire/:postId" component={PostPage} />
+      <Route path="/products/inquire/:postId" component={ProductDetailPage} />
       <Route path="/stores/inquire/:postId" component={StoreListsDetailPage} />
     </>
   );

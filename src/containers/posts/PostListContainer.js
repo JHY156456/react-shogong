@@ -36,7 +36,7 @@ const PostListContainer = ({ location, history, match }) => {
     } else if (boardType.search("products")>=0) {
       dispatch(listPosts({ username, page }));
     }
-  }, [dispatch, location.search]);
+  }, [dispatch, location.search,boardType]);
 
   return (
     <PostList

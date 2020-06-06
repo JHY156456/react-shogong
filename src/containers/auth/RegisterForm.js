@@ -29,7 +29,6 @@ const RegisterForm = ({ history }) => {
     );
   };
   const changeAddress = (hi)=>{
-    console.log(hi);
     const {key,value} = hi;
     dispatch(
       changeAPIField({
@@ -42,7 +41,6 @@ const RegisterForm = ({ history }) => {
   // 폼 등록 이벤트 핸들러
   const onSubmit = (e, buttonId) => {
     e.preventDefault();
-    console.log(form);
     if (buttonId == "firstNext") {
       setType("second");
       return;
@@ -59,9 +57,12 @@ const RegisterForm = ({ history }) => {
       setType("second");
       return;
     }
-    const { username, password, passwordConfirm } = form;
+    // if(e.target.value == id){
+    //   dispatch()
+    // }
+    const { id, password, passwordConfirm } = form;
     // 하나라도 비어있다면
-    if ([username, password, passwordConfirm].includes("")) {
+    if ([id, password, passwordConfirm].includes("")) {
       history.push("/register"); // 홈 화면으로 이동
       setError("빈 칸을 모두 입력하세요.");
       return;
@@ -75,13 +76,12 @@ const RegisterForm = ({ history }) => {
       );
       return;
     }
-    console.log("username : " + username);
+    console.log("container form : " + form.id);
     dispatch(register(form));
   };
 
   // 컴포넌트가 처음 렌더링 될 때 form 을 초기화함
   useEffect(() => {
-    console.log("??");
     dispatch(initializeForm("register"));
   }, [dispatch]);
   useEffect(() => {
