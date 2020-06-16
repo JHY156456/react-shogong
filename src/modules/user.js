@@ -28,6 +28,7 @@ function checkFailureSaga() {
 
 function* logoutSaga() {
   try {
+    console.log("로그아웃사가");
     yield call(authAPI.logout); // logout API 호출
     localStorage.removeItem("user"); // localStorage 에서 user 제거
   } catch (e) {
@@ -42,10 +43,7 @@ export function* userSaga() {
 }
 
 const initialState = {
-  user: {
-    status: null,
-    type: "",
-  },
+  user: null,
   checkError: null,
 };
 

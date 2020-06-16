@@ -11,11 +11,11 @@ export default function createRequestSaga(type, request) {
   const SUCCESS = `${type}_SUCCESS`;
   const FAILURE = `${type}_FAILURE`;
   return function* (action) {
-    console.log("서버요청");
-    console.log("전송 form:"+action.payload.id);
+    console.log("서버요청 : "+type);
     yield put(startLoading(type)); // 로딩 시작
     try {
       const response = yield call(request, action.payload); //authAPI.register(action.payload)
+      console.log(response);
       yield put({
         type: SUCCESS,
         payload: response.data,

@@ -2,12 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import palette from "../../lib/styles/palette";
-import Button from "../common/Button";
+import StyledButton from "../common/Button";
 import Calendar from "react-calendar";
 import moment from "moment";
 import "react-calendar/dist/Calendar.css";
 import posed from "react-pose";
 import CalendarModal from "../common/CalendarModal";
+import { Button } from "semantic-ui-react";
 /**
  * 회원가입 또는 로그인 폼을 보여줍니다.
  */
@@ -54,14 +55,6 @@ const Footer = styled.div`
   }
 `;
 
-const ButtonWithMarginTop = styled(Button)`
-  margin-top: 1rem;
-  position: absoulte;
-  width: auto;
-  height: 50px;
-  margin: 1rem;
-`;
-
 const textMap = {
   login: "로그인",
   register: "기본정보",
@@ -93,17 +86,16 @@ const ThirdRegisterPage = ({ type, form, onChange, onSubmit, error }) => {
     <AuthFormBlock>
       <h3>{hi}</h3>
       <div style={{ float: "right" }}>
-        <ButtonWithMarginTop
+        <Button
           onClick={(e) => onSubmit(e, e.target.id)}
           type="submit"
           id="temporarySave"
           form="myform"
           cyan
-          fullWidth
           style={{ marginTop: "1rem" }}
         >
           {"임시저장"}
-        </ButtonWithMarginTop>
+        </Button>
       </div>
       <form onSubmit={onSubmit} id="myform">
         <strong>주력제조상품</strong>
@@ -141,18 +133,14 @@ const ThirdRegisterPage = ({ type, form, onChange, onSubmit, error }) => {
           <Calendar onChange={onDateChange} />
         </CalendarModal>
         <strong>담당자</strong>
-        <StyledInput
-          name="manager"
-          onChange={onChange}
-          value={form.manager}
-        />
+        <StyledInput name="manager" onChange={onChange} value={form.manager} />
         <strong>대표번호</strong>
         <StyledInput
           name="representativeNumber"
           onChange={onChange}
           value={form.representativeNumber}
         />
-         <strong>대표이메일</strong>
+        <strong>대표이메일</strong>
         <StyledInput
           name="representativeEmail"
           placeholder="대표번호"
@@ -161,17 +149,17 @@ const ThirdRegisterPage = ({ type, form, onChange, onSubmit, error }) => {
         />
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <div style={{ textAlign: "right" }}>
-          <ButtonWithMarginTop
+          <Button
             onClick={(e) => onSubmit(e, "currentThirdMovePrev")}
             cyan
-            fullWidth
             style={{ marginTop: "1rem" }}
+            primary
           >
             {"이전"}
-          </ButtonWithMarginTop>
-          <ButtonWithMarginTop cyan fullWidth style={{ marginTop: "1rem" }}>
+          </Button>
+          <Button cyan style={{ marginTop: "1rem" }} secondary>
             {"가입하기"}
-          </ButtonWithMarginTop>
+          </Button>
         </div>
       </form>
       <Footer></Footer>

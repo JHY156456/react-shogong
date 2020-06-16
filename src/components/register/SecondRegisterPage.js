@@ -2,12 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import palette from "../../lib/styles/palette";
-import Button from "../common/Button";
+import StyledButton from "../common/Button";
 import Selector from "react-select";
 import AddrList from "../common/AddrList";
 import key from "../../common/key";
 import Modal from "../common/modal";
 import DaumAPI from "./DaumApi";
+import { Button } from 'semantic-ui-react'
+
 /**
  * 회원가입 또는 로그인 폼을 보여줍니다.
  */
@@ -39,22 +41,7 @@ const StyledInput = styled.input`
   }
 `;
 
-/**
- * 폼 하단에 로그인 혹은 회원가입 링크를 보여줌
- */
-const Footer = styled.div`
-  margin-top: 2rem;
-  text-align: right;
-  a {
-    color: ${palette.gray[6]};
-    text-decoration: underline;
-    &:hover {
-      color: ${palette.gray[9]};
-    }
-  }
-`;
-
-const ButtonWithMarginTop = styled(Button)`
+const ButtonWithMarginTop = styled(StyledButton)`
   margin-top: 1rem;
   position: absoulte;
   width: auto;
@@ -111,17 +98,16 @@ const SecondRegisterPage = ({ type, onSubmit, error,onChange,form,changeAddress 
     <AuthFormBlock>
       <h3>{hi}</h3>
       <div style={{ float: "right" }}>
-        <ButtonWithMarginTop
+        <Button
           onClick={(e) => onSubmit(e, e.target.id)}
           type="submit"
           id="temporarySave"
           form="myform"
           cyan
-          fullWidth
           style={{ marginTop: "1rem" }}
         >
           {"임시저장"}
-        </ButtonWithMarginTop>
+        </Button>
       </div>
       <form onSubmit={(e) => onSubmit(e, "secondNext")} id="myform">
       <strong>사업자등록증 첨부</strong>
@@ -175,25 +161,24 @@ const SecondRegisterPage = ({ type, onSubmit, error,onChange,form,changeAddress 
         />
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <div style={{ textAlign: "right" }}>
-          <ButtonWithMarginTop
+          <Button
             onClick={(e) => onSubmit(e, "currentSecondMovePrev")}
             cyan
-            fullWidth
             style={{ marginTop: "1rem" }}
+            primary
           >
             {"이전"}
-          </ButtonWithMarginTop>
-          <ButtonWithMarginTop
+          </Button>
+          <Button
             onClick={(e) => onSubmit(e, "currentSecondMoveNext")}
             cyan
-            fullWidth
             style={{ marginTop: "1rem" }}
+            secondary
           >
             {"다음"}
-          </ButtonWithMarginTop>
+          </Button>
         </div>
       </form>
-      <Footer></Footer>
     </AuthFormBlock>
   );
 };

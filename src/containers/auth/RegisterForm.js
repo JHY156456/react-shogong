@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeField, initializeForm, register,changeAPIField } from "../../modules/auth";
-import AuthForm from "../../components/auth/AuthForm";
 import RegisterAuthForm from "../../components/auth/RegisterAuthForm";
 import { check } from "../../modules/user";
 import { withRouter } from "react-router-dom";
@@ -76,12 +75,12 @@ const RegisterForm = ({ history }) => {
       );
       return;
     }
-    console.log("container form : " + form.id);
     dispatch(register(form));
   };
 
   // 컴포넌트가 처음 렌더링 될 때 form 을 초기화함
   useEffect(() => {
+    console.log(JSON.stringify(user));
     dispatch(initializeForm("register"));
   }, [dispatch]);
   useEffect(() => {
@@ -107,20 +106,9 @@ const RegisterForm = ({ history }) => {
       //dispatch(check());
     }
   }, [auth, authError, dispatch]);
-
-  // user 값이 잘 설정되었는지 확인
-  useEffect(() => {
-    if (user) {
-      // console.log("check API 성공");
-      // console.log(user);
-      // history.push("/SecondRegisterPage"); // 홈 화면으로 이동
-      
-    }
-  }, [history, user]);
-
   return (
     <RegisterAuthForm
-      type={type}
+      type={user==null?type:"registeredbasicinformation"}
       form={form}
       changeAddress={changeAddress}
       onChange={onChange}

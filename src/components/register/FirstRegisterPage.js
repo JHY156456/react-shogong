@@ -1,8 +1,9 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 import palette from "../../lib/styles/palette";
-import Button from "../common/Button";
+import StyledButton from "../common/Button";
 import Selector from "react-select";
+import { Button } from 'semantic-ui-react'
 
 /**
  * 스타일링된 input
@@ -20,13 +21,6 @@ const StyledInput = styled.input`
   &:focus {
     color: $oc-teal-7;
   }
-`;
-const ButtonWithMarginTop = styled(Button)`
-  margin-top: 1rem;
-  position: absoulte;
-  width: auto;
-  height: 50px;
-  margin: 1rem;
 `;
 const techCompanies = [
   { label: "박윤범", value: 1 },
@@ -64,13 +58,12 @@ const FirstRegisterPage = ({ onSubmit, onChange,form, error }) => {
   return (
     <div>
       <div style={{ float: "right" }}>
-        <ButtonWithMarginTop
+        <Button
           onClick={(e) => onSubmit(e, e.target.id)}
           type="submit"
           id="temporarySave"
           form="myform"
           cyan
-          fullWidth
           style={{ marginTop: "1rem" }}
         >
           {/* <ButtonWithMarginTop
@@ -83,7 +76,7 @@ const FirstRegisterPage = ({ onSubmit, onChange,form, error }) => {
           style={{ marginTop: "1rem" }}
         > */}
           {"임시저장"}
-        </ButtonWithMarginTop>
+        </Button>
       </div>
       <form onSubmit={onSubmit} id="myform">
         <strong>아이디</strong>
@@ -129,17 +122,16 @@ const FirstRegisterPage = ({ onSubmit, onChange,form, error }) => {
         <Selector placeholder="판매상품 카테고리" options={techCompanies} styles={colourStyles} name="sellCategory" />
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <div style={{ textAlign: "right" }}>
-          <ButtonWithMarginTop
+          <Button
             onClick={(e) => onSubmit(e,"firstNext")}
             cyan
-            fullWidth
             style={{ marginTop: "1rem" }}
+            secondary
           >
             {"다음"}
-          </ButtonWithMarginTop>
+          </Button>
         </div>
       </form>
-      <Footer></Footer>
     </div>
   );
 };

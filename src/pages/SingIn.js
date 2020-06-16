@@ -63,11 +63,12 @@ const SignIn = ({ type, form, onChange, onSubmit, error }) => {
             margin="normal"
             required
             fullWidth
-            id="email"
+            id="id"
             label="아이디"
             name="id"
-            autoComplete="email"
+            autoComplete="id"
             autoFocus
+            onChange={onChange}
           />
           <TextField
             variant="outlined"
@@ -79,6 +80,7 @@ const SignIn = ({ type, form, onChange, onSubmit, error }) => {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={onChange}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

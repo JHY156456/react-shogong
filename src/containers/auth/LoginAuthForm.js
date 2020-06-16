@@ -42,23 +42,28 @@ const LoginAuthForm = ({ history }) => {
   useEffect(() => {
    // consol.log("??");
     if (authError) {
-      console.log('오류 발생');
-      console.log(authError);
-      alert("네트워크 오류가 발생했습니다.\n관리자에게 문의해주세요");
+      console.log("authError : "+authError.status);
+      if(authError.response.status == 401){
+        console.log(authError.response);
+      }
+      //alert("네트워크 오류가 발생했습니다.\n관리자에게 문의해주세요");
       setError('로그인 실패');
       return;
     }
     if (loginAuth) {
       console.log('로그인 성공');
-      console.log("여기?");
-      //dispatch(check());
-      history.push('/register')
+      dispatch(check());
     }
   }, [loginAuth, authError, dispatch]);
 
   useEffect(() => {
     if (user) {
-      history.push('/');
+      history.push('/register');
+      try{
+        localStorage.setItem('user',JSON.stringify(user));
+      }catch(e){
+        console.log('localStorage is not working');
+      }
     }
   }, [history, user]);
 

@@ -1695,7 +1695,7 @@ input, select, textarea {
 /* Wrapper (main) */
 
 	#sidebar + #wrapper {
-		margin-left: 17em;
+		margin-left: 15em;
 	}
 
 		@media screen and (max-width: 980px) {
@@ -1763,7 +1763,7 @@ input, select, textarea {
 		position: fixed;
 		text-align: right;
 		top: 0;
-		width: 17em;
+		width: 15em;
 		z-index: 10000;
 	}
 
@@ -1794,7 +1794,7 @@ input, select, textarea {
 		}
 		#sidebar > .inner li a{
 			color: black;
-			font-size: medium;
+			font-size: small;
 		}
 			body.is-ie #sidebar > .inner {
 				height: 100%;

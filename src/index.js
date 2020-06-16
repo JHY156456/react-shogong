@@ -21,17 +21,16 @@ const store = createStore(
 
 function loadUser(){
   try{
-    // const user = localStorage.getItem('user');
-    // if(!user.status) return;
+    const user = localStorage.getItem('user');
+    if(!user.status) return;
 
-    // store.dispatch(tempSetUser(user));
-    // store.dispatch(check());
-    const user = new Object();
-    user.status = true;
-    // user.type = "administrator";
-    user.type = "customer";
     store.dispatch(tempSetUser(user));
-    console.log("tempSetUser");
+    store.dispatch(check());
+    // const user = new Object();
+    // user.status = true;
+    // // user.type = "administrator";
+    // user.type = "customer";
+    // store.dispatch(tempSetUser(user));
   }catch(e){
     console.log('localStorage is not working');
   }

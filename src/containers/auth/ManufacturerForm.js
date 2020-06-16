@@ -77,7 +77,9 @@ const ManufacturerForm = ({ history }) => {
   }, [dispatch]);
   // 회원가입 성공 / 실패 처리
   useEffect(() => {
-    console.log("manufacturer check : "+check)
+    if(authError){
+      console.log("authError");
+    }
     if (check) {
       history.push(`/stores/inquire/${hi}`);
     } 

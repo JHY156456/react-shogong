@@ -41,7 +41,7 @@ const RegisterAuthForm = ({ type, form, onChange, onSubmit, error,changeAddress 
     <AuthFormBlock>
       <h3>{text}</h3>
       {(function () {
-        if (type === "first")
+        if (type === "first"){
           return (
             <FirstRegisterPage
               onSubmit={onSubmit}
@@ -50,6 +50,7 @@ const RegisterAuthForm = ({ type, form, onChange, onSubmit, error,changeAddress 
               error={error}
             />
           );
+        }
         else if (type === "second")
           return (
             <SecondRegisterPage
@@ -68,10 +69,6 @@ const RegisterAuthForm = ({ type, form, onChange, onSubmit, error,changeAddress 
               onChange={onChange}
               error={error}
             />
-          );
-        else if (type === "manufacturer")
-          return (
-            <ManufacturerStory onSubmit={onSubmit} form={form} error={error} />
           );
         else if (type === "registeredbasicinformation")
           return (
