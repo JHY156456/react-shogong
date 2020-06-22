@@ -1,9 +1,10 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-
+import AskModal from "./components/common/AskModal";
 function AuthRoute({ user, component: Component, render, ...rest }) {
   console.log(user);
   return (
+    <>
     <Route
       {...rest}
       render={(props) =>
@@ -14,10 +15,11 @@ function AuthRoute({ user, component: Component, render, ...rest }) {
             <Component {...props} />
           )
         ) : (
-          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+          <Redirect to={{ pathname: "/", state: { reason: "login" } }} />
         )
       }
     />
+    </>
   );
 }
 
