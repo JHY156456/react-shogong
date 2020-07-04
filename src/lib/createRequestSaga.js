@@ -14,6 +14,7 @@ export default function createRequestSaga(type, request) {
     console.log("서버요청 : "+type);
     yield put(startLoading(type)); // 로딩 시작
     try {
+      console.log(request);
       const response = yield call(request, action.payload); //authAPI.register(action.payload)
       console.log(response);
       yield put({

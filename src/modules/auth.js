@@ -89,6 +89,7 @@ const initialState = {
   login: {
     username: "",
     password: "",
+    savePassword:false,
   },
   auth: null,
   loginAuth: null,

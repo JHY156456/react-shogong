@@ -18,7 +18,11 @@ const LoginAuthForm = ({ history, location }) => {
   ); //리덕스가 가지고있는 상태값
   // 인풋 변경 이벤트 핸들러
   const onChange = (e) => {
-    const { value, name } = e.target;
+    let { value, name } = e.target;
+    if (name == "savePassword") {
+      console.log(form.savePassword);
+      value = !form.savePassword;
+    }
     dispatch(
       changeField({
         form: "login",
@@ -32,28 +36,37 @@ const LoginAuthForm = ({ history, location }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     const { id, password } = form;
+    if(form.savePassword==true){
+      try {
+        localStorage.setItem("user", JSON.stringify(user));
+      } catch (e) {
+        console.log("localStorage is not working");
+      }
+    }
     dispatch(login({ id, password }));
   };
 
   // 컴포넌트가 처음 렌더링 될 때 form 을 초기화함
   useEffect(() => {
     dispatch(initializeForm("login"));
-    if (location.state != null) {
-      if (location.state.reason) {
-        console.log(location.state.reason);
-        alert("로그인 부탁해요");
-        history.replace('', null);
+    try {
+      if (location.state != null) {
+        if (location.state.reason) {
+          console.log(location.state.reason);
+          alert("로그인 부탁해요");
+          history.replace("", null);
+        }
       }
-    }
+    } catch (e) {}
   }, [dispatch]);
 
   useEffect(() => {
     // consol.log("??");
     if (authError) {
       console.log("authError : " + authError.status);
-      if (authError.response.status == 401) {
-        console.log(authError.response);
-      }
+      // if (authError.response.status == 401) {
+      //   console.log(authError.response);
+      // }
       //alert("네트워크 오류가 발생했습니다.\n관리자에게 문의해주세요");
       setError("로그인 실패");
       return;

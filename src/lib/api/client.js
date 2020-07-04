@@ -9,6 +9,7 @@ const client = axios.create();
   client.defaults.baseURL = 'http://ec2-54-180-98-167.ap-northeast-2.compute.amazonaws.com:8080/' 
   // 헤더 설정
   client.defaults.headers.common['Authorization'] = 'Bearer a1b2c3d4';
+  //client.defaults.withCredentials=true;
   // 인터셉터 설정
   axios.interceptors.response.use(
     response => {
