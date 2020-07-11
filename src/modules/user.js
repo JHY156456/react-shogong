@@ -29,8 +29,8 @@ function checkFailureSaga() {
 function* logoutSaga() {
   try {
     console.log("로그아웃사가");
-    yield call(authAPI.logout); // logout API 호출
-    localStorage.removeItem("user"); // localStorage 에서 user 제거
+    //yield call(authAPI.logout); // logout API 호출"access_token"
+
   } catch (e) {
     console.log(e);
   }
@@ -39,7 +39,7 @@ function* logoutSaga() {
 export function* userSaga() {
   yield takeLatest(CHECK, checkSaga);
   yield takeLatest(CHECK_FAILURE, checkFailureSaga);
-  yield takeLatest(LOGOUT, logoutSaga);
+  //yield takeLatest(LOGOUT, logoutSaga);
 }
 
 const initialState = {

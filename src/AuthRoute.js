@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import AskModal from "./components/common/AskModal";
 function AuthRoute({ user, component: Component, render, ...rest }) {
-  console.log(user);
+  console.log("authRoute user : " + user);
   return (
     <>
     <Route

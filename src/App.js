@@ -9,12 +9,14 @@ import ManufacturerPage from "./pages/ManufacturerPage";
 import LoginPage from "./pages/LoginPage";
 import PostListPage from "./pages/PostListPage";
 import WritePage from "./pages/WritePage";
-import ProductDetailPage from "./pages/ProductDetailPage";
-import AuthRoute from "./AuthRoute";
 import StoreListsDetailPage from "./pages/StoreListsDetailPage";
+import AuthRoute from "./AuthRoute";
+import ProductDetailPage from "./pages/ProductDetailPage";
+import MenufacturerStoryDetail from "./pages/ProductDetailPage";
 import Button from "./components/common/Button";
-const App = () => {
-  const { user } = useSelector(({ user }) => ({ user: user.user }));
+import ManufacturerStory from "./components/register/ManufacturerStory";
+const App = ({user}) => {
+  console.log("app.js user : " + user);
   return (
     <Switch>
       <Route path="/" component={LoginPage} exact={true} />
@@ -30,6 +32,7 @@ const App = () => {
       <Route path="/write" component={WritePage} />
       <Route path="/products/inquire/:postId" component={ProductDetailPage} />
       <Route path="/stores/inquire/:postId" component={StoreListsDetailPage} />
+      {/* <Route path="/stores/inquire/:postId" component={MenufacturerStoryDetail} /> */}
       <Route
         render={({ location }) => (
           <div>

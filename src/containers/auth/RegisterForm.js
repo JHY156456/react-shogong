@@ -80,7 +80,6 @@ const RegisterForm = ({ history }) => {
 
   // 컴포넌트가 처음 렌더링 될 때 form 을 초기화함
   useEffect(() => {
-    console.log(JSON.stringify(user));
     dispatch(initializeForm("register"));
   }, [dispatch]);
   useEffect(() => {

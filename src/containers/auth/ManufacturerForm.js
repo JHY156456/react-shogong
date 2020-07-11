@@ -14,12 +14,13 @@ import qs from 'qs';
 const ManufacturerForm = ({ history }) => {
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
-  const { form, check, authError, user } = useSelector(
+  const { form, check, authError, user,auth } = useSelector(
     ({ manufacturer, user }) => ({
       form: manufacturer.manufacturer,
       check: manufacturer.check,
       authError: manufacturer.authError,
       user: user.user,
+      auth: manufacturer.auth
     })
   );
   const [isRegistered, setisRegistered] = useState("true");
@@ -75,15 +76,18 @@ const ManufacturerForm = ({ history }) => {
     dispatch(initializeForm("manufacturer"));
     dispatch(checkRegisteredManufacturer());
   }, [dispatch]);
-  // 회원가입 성공 / 실패 처리
+  /**
+   * check : 제조사이야기 진입 전.. 기등록 : 게시글id, 최초등록 : null
+   * auth : register완료 후 등록된 게시글id값
+   */
   useEffect(() => {
     if(authError){
       console.log("authError");
     }
-    if (check) {
-      history.push(`/stores/inquire/${hi}`);
+    if (check||auth) {
+      history.push(`/stores/inquire/${check}`);
     } 
-  }, [check, authError, dispatch]);
+  }, [check, authError ,auth,dispatch]);
 
   return (
     <ManufacturerStory

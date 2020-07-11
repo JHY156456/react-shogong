@@ -8,14 +8,7 @@ export const login = ({ id, password }) =>
 export const register = (form) => client.post("/api/auth/register", form);
 
 // 로그인 상태 확인
-export const check = () =>
-  client.get("/api/auth/check", {
-    withCredentials: true,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Content-Type": "application/json",
-    },
-  });
+export const check = () => client.get("/api/auth/check");
 
 // 로그아웃
 export const logout = () => client.post("/api/auth/logout");

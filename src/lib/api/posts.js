@@ -20,7 +20,9 @@ import client from "./client";
 export const writePost = ({ title, body, tags }) =>
   client.post("/api/posts", { title, body, tags });
 
-export const readPost = (id) => client.get(`/api/posts/${id}`);
+export const readPost = (id) => client.get(`/businessUserInfo/get/${id}`);
+export const readManufacturerByUserId = (id) => client.get(`/manufacturer/getbyuserid/${id}`);
+export const readManufacturerByPostId = (id) => client.get(`/manufacturer/getbypostid/${id}`);
 
 export const listPosts = ({ page, username}) => {
   const queryString = qs.stringify({

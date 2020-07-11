@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet-async";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import "../../../node_modules/react-bootstrap-table/css/react-bootstrap-table.css";
 import CompanySummary from "../../common/CompanySummary";
+import { Accordion, Icon } from 'semantic-ui-react'
 const PostViewerBlock = styled(Responsive)`
   margin-top: 4rem;
   padding: 1rem;
@@ -16,7 +17,7 @@ const PostHead = styled.div`
   border-bottom: 1px solid ${palette.gray[2]};
   margin-bottom: 3rem;
   h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     line-height: 1.5;
     margin: 0;
   }
@@ -27,7 +28,17 @@ const PostContent = styled.div`
   color: ${palette.gray[8]};
 `;
 
-const StoreViewer = ({ post, error, loading, actionButtons, ownPost }) => {
+const StoreViewer = ({ post, error, loading, actionButtons, ownPost,onManufacturerClick }) => {
+  const [state, setState] = useState(false);
+  const unFoldOrFold=(nextState)=>{
+    if(!nextState){
+      onManufacturerClick(post.id);
+      setState(nextState);
+    }
+  }
+
+
+
   // 에러 발생 시
   if (error) {
     if (error.response && error.response.status === 404) {
@@ -41,7 +52,7 @@ const StoreViewer = ({ post, error, loading, actionButtons, ownPost }) => {
     return null;
   }
 
-  const { title, body, user, publishedDate, tags } = post;
+  const { title, body, user, publishedDate, tags, manufacturer } = post;
 
   const data = [
     { name: "사업자명", value: "2" },
@@ -75,6 +86,43 @@ const StoreViewer = ({ post, error, loading, actionButtons, ownPost }) => {
           ></TableHeaderColumn>
           <TableHeaderColumn dataField="value"></TableHeaderColumn>
         </BootstrapTable>
+
+
+        <Accordion>
+        <Accordion.Title
+          active={state}
+          index={0}
+          onClick={unFoldOrFold(!state)}
+        >
+          <Icon name='dropdown' />
+          제조사이야기 보기
+        </Accordion.Title>
+        <Accordion.Content active={state}>
+        {manufacturer == null ? (
+            <></>
+          ) : (
+            <>
+              <PostHead>
+                <h1>{title}</h1>
+                <SubInfo
+                  username="username"
+                  publishedDate={publishedDate}
+                  hasMarginTop
+                />
+                <Tags tags={tags} />
+              </PostHead>
+              <PostContent dangerouslySetInnerHTML={{ __html: manufacturer }} />
+            </>
+          )}
+        </Accordion.Content>
+        </Accordion>
+
+
+
+
+
+
+
       </PostViewerBlock>
     </div>
   );

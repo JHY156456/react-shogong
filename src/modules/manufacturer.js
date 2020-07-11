@@ -56,8 +56,8 @@ const initialState = {
     orientation: "",
     otherQuestion: "",
   },
-  check: 1,
-  loginAuth: null,
+  check: null,
+  auth: null,
   authError: null,
 };
 

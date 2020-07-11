@@ -92,8 +92,9 @@ const initialState = {
     savePassword:false,
   },
   auth: null,
-  loginAuth: null,
+  loginAuth:null,
   authError: null,
+  meta : null,
 };
 
 const auth = handleActions(
@@ -110,6 +111,7 @@ const auth = handleActions(
       ...state,
       [form]: initialState[form],
       authError: null, // 폼 전환 시 회원 인증 에러 초기화
+      loginAuth:null
     }),
     // 회원가입 성공
     [REGISTER_SUCCESS]: (state, { payload: auth }) => ({
@@ -123,11 +125,12 @@ const auth = handleActions(
       authError: error,
     }),
     // 로그인 성공
-    [LOGIN_SUCCESS]: (state, { payload: auth }) => ({
+    [LOGIN_SUCCESS]: (state, { payload: auth,meta:meta }) => ({
       //response.data를 auth로 할당하겠다!
       ...state,
       authError: null,
       loginAuth: auth,
+      meta:meta
     }),
     // 로그인 실패
     [LOGIN_FAILURE]: (state, { payload: error }) => ({

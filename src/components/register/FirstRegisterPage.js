@@ -63,7 +63,6 @@ const FirstRegisterPage = ({ onSubmit, onChange,form, error }) => {
           type="submit"
           id="temporarySave"
           form="myform"
-          cyan
           style={{ marginTop: "1rem" }}
         >
           {/* <ButtonWithMarginTop
@@ -124,7 +123,6 @@ const FirstRegisterPage = ({ onSubmit, onChange,form, error }) => {
         <div style={{ textAlign: "right" }}>
           <Button
             onClick={(e) => onSubmit(e,"firstNext")}
-            cyan
             style={{ marginTop: "1rem" }}
             secondary
           >

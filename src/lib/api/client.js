@@ -8,7 +8,10 @@ const client = axios.create();
   // API 주소를 다른 곳으로 사용함
   client.defaults.baseURL = 'http://ec2-54-180-98-167.ap-northeast-2.compute.amazonaws.com:8080/' 
   // 헤더 설정
-  client.defaults.headers.common['Authorization'] = 'Bearer a1b2c3d4';
+  const token = localStorage.getItem("access_token");
+  if (token != null) {
+    client.defaults.headers.common['access_token'] = token;
+  }
   //client.defaults.withCredentials=true;
   // 인터셉터 설정
   axios.interceptors.response.use(
